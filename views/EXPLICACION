@@ -1,0 +1,17 @@
+
+Layout: Carpeta que tiene las capas principales, en este caso:     
+    ****masterPage: Plantilla principal cuando se accede al sistema, compuesta por 
+                    un banner, footer y un {{body}}, el cual carga dinamicamente
+                    cualquier pagina que se carge. 
+
+Archivos externos: Archivos que se acceden, en este caso: 
+    ****index.hbs: Pagina del login
+    ****Otras: Paginas que si se cargan, estaran empaquetadas dentro del 
+               masterPage.hbs
+
+
+
+DEFINICION: {{nombre}}, permite acceder a la variable mandada desde el servidor
+            {{{nombre}}}, recarga una seccion en especifico, en el caso del proyecto
+                          el body
+  

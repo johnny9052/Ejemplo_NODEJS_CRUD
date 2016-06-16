@@ -1,0 +1,11 @@
+1. Crear proyecto como aplicacion NODEJS (Seleccionar el bower.js y el package.js)
+2. Borrar main.js y colocar app.js
+3. Colocar el bower y el package como en este proyecto
+4. Instalar con npm install (Sabemos que quedo bien instalado si en consola muestra
+   un poco de ramificaciones como la estructura del proyecto, si no es porque el express
+   no se instalo, por lo que deberia ser con npm install express)
+5. Crear la carpeta public, que contendra CSS y archivos adicionales
+6. Configurar el app.js, iniciando el servidor e indicando la ruta de archivos estaticos
+7. Iniciar el servidor con npm start
+8. Crear la carpeta views, y dentro de esta crear el index.hbs y la carpeta layouts
+9. crear la carpeta services, y dentro de este el index.js

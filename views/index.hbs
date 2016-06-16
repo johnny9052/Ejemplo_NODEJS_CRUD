@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>LogIn</title>
+    </head>
+    <body>
+
+        <form  name="formLogIn" method="post" action="/logIn">
+            <table>
+                <tr>
+                    <td>
+                        <label>Usuario</label>                        
+                    </td>
+                    <td>
+                        <!-- Se asocial el modelo al campo-->
+                        <input type="text" id="txtUsuario" name="usuario" 
+                               required>
+                    </td>                     
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Password</label>                        
+                    </td>
+                    <td>
+                        <input type="password" id="txtPassword" name="password" 
+                               required>
+                    </td>                     
+                </tr>
+
+                <tr>
+                    <td>
+
+                    </td>
+                    <td>
+                        <!-- Se envia por parametro si esta bien diligenciado
+                        el formulario o no-->
+                         <input type="submit" value="Ingresar">             
+                    </td>
+                </tr>
+            </table>           
+        </form> 
+
+    </body>
+</html>
