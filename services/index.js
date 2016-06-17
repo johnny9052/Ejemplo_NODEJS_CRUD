@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+//Se importa el archivo js que tiene la conexion a la base de datos
+var bd = require('./database');
 
 /***********************************************************/
 /*****************REDIRECCIONAMIENTOS***********************/
@@ -21,9 +23,24 @@ router.get('/', function (req, res) {
 router.get('/masterpage', function (req, res) {
     /*Si no ha iniciado sesion, entonces carga el login*/
     if (req.session.user) {
-        var numero = Math.round(Math.random() * 10);
+
         res.render('inicio', {
-            name: numero
+            nombre: req.session.name
+        });
+    } else {
+        res.render('index', {layout: false});
+    }
+});
+
+
+
+/*Cuando se solicita cargar el master page*/
+router.get('/inicio', function (req, res) {
+    /*Si no ha iniciado sesion, entonces carga el login*/
+    if (req.session.user) {
+
+        res.render('inicio', {
+            nombre: req.session.name
         });
     } else {
         res.render('index', {layout: false});
@@ -44,16 +61,28 @@ router.get('/masterpage', function (req, res) {
 
 /*Accion para cuando se da click en inicar sesion*/
 router.post('/logIn', function (req, res) {
-    /*Se crea una variable de sesion¨*/
-    req.session.user = req.body.usuario;
 
-    var numero = Math.round(Math.random() * 10);
 
-    /*Se abre la pagina, mandando por parametro un objeto JSON*/
-    res.render('inicio', {
-        name: numero
+    bd.query('select nombre from usuario where nickname=? AND password = ?',
+            [req.body.usuario, req.body.password], function (error, filas) {
+        if (error) {
+            console.log('error en la consulta');
+            return;
+        }
+        if (filas.length > 0) {
+            /*Si lo encuentra lista el elemento*/
+            req.session.user = req.body.usuario;
+            req.session.name = filas[0].nombre;
+
+            /*Se abre la pagina, mandando por parametro un objeto JSON*/
+            res.render('inicio', {
+                nombre: filas[0].nombre
+            });
+        } else {
+            /*Si no lo encuentra muestra mensaje indicando que no lo encontro*/
+            res.render('mensajearticulos', {mensaje: 'No existe el codigo de articulo ingresado'});
+        }
     });
-
 });
 
 router.get('/logout', function (req, res, next) {

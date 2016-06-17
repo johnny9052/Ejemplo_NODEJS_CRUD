@@ -14,7 +14,6 @@ var session = require('express-session');
 /*Import necesario para poder mandar datos por POST - GET al servidor*/
 var bodyParser = require('body-parser');
 
-
 /*Se inicia el Framework Express*/
 var app = express();
 
@@ -26,6 +25,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 /*Se añade el cookieParser*/
 app.use(cookieParser());
+/*Se define la ruta de los archivos estaticos, es decir los que pueden ser 
+ * accedidos sin necesidad de estar enrutados por node, sin esto no reconoceria 
+ * los css, etc. */
+app.use("/public", express.static(__dirname + '/public'));
 /*Se añade e inicializa el manejo de sesiones, indicando el pass para acceder
  * a ellas remotamente, permitiendo sobreescribirlas y añadir datos sin
  * inicializarlas*/
