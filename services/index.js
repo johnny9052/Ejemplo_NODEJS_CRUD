@@ -1,3 +1,6 @@
+/*Funciones globales que se necesitan sin importar en que formulario se encuentre, 
+ * y se asigno globalmente en el app.js al asingarselo al / */
+
 var express = require('express');
 var router = express.Router();
 
@@ -40,6 +43,20 @@ router.get('/inicio', function (req, res) {
     if (req.session.user) {
 
         res.render('inicio', {
+            nombre: req.session.name
+        });
+    } else {
+        res.render('index', {layout: false});
+    }
+});
+
+
+
+router.get('/estudiante', function (req, res) {
+    /*Si no ha iniciado sesion, entonces carga el login*/
+    if (req.session.user) {
+
+        res.render('estudiante', {
             nombre: req.session.name
         });
     } else {
@@ -96,12 +113,6 @@ router.get('/logout', function (req, res, next) {
 /***********************************************************/
 /********************END PETICIONES*************************/
 /***********************************************************/
-
-
-
-router.get('/about', function (req, res) {
-    res.render('about');
-});
 
 
 

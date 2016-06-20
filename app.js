@@ -54,9 +54,11 @@ app.set('view engine', '.hbs');
 
 /*Imports de los JS que se añadiran a las vistas*/
 var routes = require('./services/index');
+var estudiante = require('./services/estudiante');
 /*Se añade el index.js como listener del formulario que se carga cuando se llama
  * a la ruta / */
 app.use('/', routes);
+app.use('/estudiante', estudiante);
 
 /*END Imports de los JS que se añadiran a las vistas*/
 
